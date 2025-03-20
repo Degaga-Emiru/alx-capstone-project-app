@@ -55,6 +55,7 @@ const Login = () => {
                 <label htmlFor="emailOrUsername" className="block text-sm font-medium text-gray-700">Email or Username</label>
                 <Field
                   type="text"
+                  placeholder="Email or Password"
                   name="emailOrUsername"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -65,6 +66,7 @@ const Login = () => {
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
                 <Field
                   type="password"
+                  placeholder="Your Password"
                   name="password"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />

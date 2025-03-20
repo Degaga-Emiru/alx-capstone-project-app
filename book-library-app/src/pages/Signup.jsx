@@ -62,6 +62,7 @@ const Signup = () => {
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
                 <Field
                   type="text"
+                  placeholder="Username"
                   name="username"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -72,6 +73,7 @@ const Signup = () => {
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                 <Field
                   type="email"
+                  placeholder="Email"
                   name="email"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -82,6 +84,7 @@ const Signup = () => {
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
                 <Field
                   type="password"
+                  placeholder="Password"
                   name="password"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -93,6 +96,7 @@ const Signup = () => {
                 <Field
                   type="password"
                   name="confirmPassword"
+                  placeholder="Confirm Your Password"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
                 <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm" />
