@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import welcomeBackground from "../assets/welcome-background.jpeg"; // Ensure this path is correct
 
 const WelcomePage = () => {
@@ -23,11 +24,13 @@ const WelcomePage = () => {
         </h1>
 
         {/* Button */}
-        <button
-          className="bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-bold shadow-md hover:bg-blue-600 focus:outline-none mt-8"
-        >
-          Get Started
-        </button>
+        <Link to="/signup">
+          <button
+            className="bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-bold shadow-md hover:bg-blue-600 focus:outline-none mt-8"
+          >
+            Get Started
+          </button>
+        </Link>
 
         {/* Paragraph */}
         <p className="text-base md:text-lg mt-8">
