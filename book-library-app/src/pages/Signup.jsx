@@ -1,9 +1,10 @@
 import React from 'react';
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-
 const Signup = () => {
+    const [message, setMessage] = useState({ text: '', type: 'info' });
   const navigate = useNavigate();
   const initialValues = {
     username: '',
@@ -27,12 +28,12 @@ const Signup = () => {
     const userExists = users.some((user) => user.email === values.email || user.username === values.username);
 
     if (userExists) {
-      alert('User already exists!');
+        setMessage({ text: 'User already exists!', type: 'error' });
     } else {
       users.push(values);
       localStorage.setItem('users', JSON.stringify(users));
-      alert('Signup successful!');
-      navigate('/login');
+      setMessage({ text: 'Signup successful!', type: 'success' });   
+         navigate('/login');
     }
   };
   return (
@@ -40,6 +41,16 @@ const Signup = () => {
         
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
+        {/* Message Display */}
+      {message.text && (
+        <div
+          className={`p-4 mb-4 rounded-md ${
+            message.type === 'error' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+          }`}
+        >
+          {message.text}
+        </div>
+      )}
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -56,7 +67,7 @@ const Signup = () => {
                 />
                 <ErrorMessage name="username" component="div" className="text-red-500 text-sm" />
               </div>
-
+    
               <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                 <Field
