@@ -29,7 +29,6 @@ const Login = () => {
         setMessage({ text: 'Invalid credentials!', type: 'error' });
     }
   };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
@@ -83,7 +82,7 @@ const Login = () => {
 
               <p className="mt-4 text-center text-sm text-gray-600">
                 Don't have an account?{' '}
-                <Link to="/signup" className="text-blue-500 hover:underline">
+                <Link to="/signup" className="text-orange-500 font-semibold hover:underline">
                   Signup
                 </Link>
               </p>
