@@ -12,10 +12,8 @@ const BookDetails = () => {
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        // First try to get ISBN from the book object
         let isbn = book.isbn?.[0] || '';
         
-        // If no ISBN in the book object, try to extract from the key
         if (!isbn && book.key) {
           const matches = book.key.match(/ISBN:([0-9]+)/);
           if (matches && matches[1]) {
@@ -41,7 +39,7 @@ const BookDetails = () => {
     fetchBookDetails();
   }, [book]);
 
-  // Handle borrowing a book
+  // Handle borrowing a book when user want to borrow a book 
   const handleBorrow = (days) => {
     if (currentUser.borrowedBooks.length >= 2)// the user can only borrow at most 2 books at a time 
      {
@@ -142,7 +140,6 @@ const BookDetails = () => {
       </div>
     );
   }
-
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="container mx-auto bg-white p-6 rounded-lg shadow-md">
@@ -196,3 +193,45 @@ const BookDetails = () => {
             </p>
           </div>
         )};
+         {/*User to borrow the searched  Book  e.g for 7 days, 14 days, 30 days*/}
+         <div className="border-t pt-4">
+  <h2 className="text-xl font-bold mb-2">Borrow This Book</h2>
+  <p className="text-gray-700 mb-4">Choose how long you'd like to borrow this book. Remember to return it by the due date.
+  </p>
+  <div className="relative">
+    <select
+      onChange={(e) => handleBorrow(Number(e.target.value))}
+      className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="">Select borrowing period</option>
+      <option value="7">7 Days</option>
+      <option value="14">14 Days</option>
+      <option value="30">30 Days</option>
+    </select>
+    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+      </svg>
+    </div>
+  </div>
+</div>
+ <div className="border-t pt-4">
+            <h2 className="text-xl font-bold mb-2">Add to Collections</h2>
+            <div className="flex flex-wrap gap-4">
+                 {/* used to add the Book to the favorite list*/}
+              <button
+                onClick={handleAddToFavorites}
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add to Favorites
+              </button>
+               {/* this function handles add to reading list */}
+              <button
+                onClick={handleAddToReadingList}
+                className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Add to Reading List
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+};
+export default BookDetails; 
