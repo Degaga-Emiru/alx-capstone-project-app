@@ -69,11 +69,9 @@ const BookDetails = () => {
     };
     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
     alert(`Book borrowed successfully! Due date: ${dueDate.toDateString()}`);
-    //navigate('/home');
+    
   };
-
-  // Handle adding to favorites
-  const handleAddToFavorites = () => {
+  const handleAddToFavorites = () => { // that handle when user added to their Favorite
     const isBookInFavorites = currentUser.favorites.some(
       (fav) => fav.key === book.key
     );
@@ -92,7 +90,7 @@ const BookDetails = () => {
 
   };
 
-  // Handle adding to reading list
+  // this function that Handle adding to reading list when user click the button to add the Reading list
   const handleAddToReadingList = () => {
     const isBookInReadingList = currentUser.readingList.some(
       (item) => item.key === book.key
@@ -132,3 +130,69 @@ const BookDetails = () => {
     }
     return 'Not available';
   };
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 p-4 flex items-center justify-center">
+        <div className="text-center">
+          <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-2">Loading book details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="container mx-auto bg-white p-6 rounded-lg shadow-md">
+      <button
+  onClick={() => navigate("/home")} // Explicitly go to home
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4"
+> Back to Home
+</button>
+        <h1 className="text-3xl font-bold mb-4">{book.title}</h1>
+        
+        {book.cover_i && (
+          <img
+            src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
+            alt={book.title}
+            className="w-48 h-64 object-cover mb-4"
+          />
+        )}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <p className="text-gray-700 mb-2">
+              <strong>Author(s):</strong> {book.author_name?.join(', ') || 'Unknown'}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <strong>Publisher:</strong> {bookDetails?.publishers?.[0]?.name || book.publisher?.join(', ') || 'Unknown'}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <strong>Publication Date:</strong> {book.first_publish_year || 'Unknown'}
+            </p>
+          </div>
+          <div>
+            <p className="text-gray-700 mb-2">
+              <strong>ISBN:</strong> {getDisplayISBN()}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <strong>Pages:</strong> {getDisplayPages()}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <strong>Subjects:</strong> {book.subject?.join(', ') || 'Not available'}
+            </p>
+          </div>
+        </div>
+
+        {bookDetails?.description && (
+          <div className="mb-6">
+            <h2 className="text-xl font-bold mb-2">Description</h2>
+            <p className="text-gray-700">
+              {typeof bookDetails.description === 'string' 
+                ? bookDetails.description 
+                : bookDetails.description?.value || 'No description available'}
+            </p>
+          </div>
+        )};
