@@ -9,11 +9,10 @@ const Home = () => {
   const navigate = useNavigate();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const logout = useAuthStore((state) => state.logout);
-
   // Fetch books from Open Library API
+  // I use the Open Library API to fetch the Book based on user search result
   const fetchBooks = async () => {
     if (!searchQuery) return;
-
     try {
       const response = await fetch(
         `https://openlibrary.org/search.json?q=${encodeURIComponent(searchQuery)}`
@@ -24,32 +23,26 @@ const Home = () => {
       console.error("Error fetching books:", error);
     }
   };
-
-  // Handle search form submission
+  
   const handleSearch = (e) => {
     e.preventDefault();
     fetchBooks();
   };
-
-  // Navigate to Book Details page
   const handleSeeDetails = (book) => {
     navigate("/book-details", { state: { book } });
   };
-
-  // Toggle navbar menu for small screens
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Handle logout
   const handleLogout = () => {
-    logout();
+    logout();// to handle the Logout that redirect to Login page when user click the Logout Button
     navigate("/login");
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      {/* Navbar */}
+      {/* Navbar menu that linked with d/t pages using Link  */}
       <nav className="bg-blue-600 p-4 text-white">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
@@ -60,7 +53,7 @@ const Home = () => {
             />
             <h1 className="text-2xl font-bold">Book Library</h1>
           </div>
-          {/* Menu Button for Small Screens */}
+          {/* Menu Button for Small Screens  hamburger menu fo mobile device */}
           <button className="md:hidden" onClick={toggleMenu}>
             {isMenuOpen ? (
               <svg
@@ -94,7 +87,7 @@ const Home = () => {
               </svg>
             )}
           </button>
-          {/* Navbar Links */}
+          {/* Navbar Links with hamburger menu for mobile size when clicked to display the navbar menu */}
           <div
             className={`${
               isMenuOpen ? "block" : "hidden"
@@ -137,7 +130,7 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Search Bar */}
+        {/* Search Bar for searching a book by author, title  when user search it handle the handleSearch */}
         <form
           onSubmit={handleSearch}
           className="flex justify-center space-x-2 mb-8"
@@ -147,17 +140,13 @@ const Home = () => {
             placeholder="Search for books by title or author..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full md:w-1/2 p-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600"
-          />
-          <button
+            className="w-full md:w-1/2 p-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600"/> <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-          >
-            Search
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" >Search
           </button>
         </form>
-
-        {/* Book List */}
+   {/* The book list that displayed when user search a book with the Button of See details that redirect to Book details*/}
+       
         <div className="container mx-auto p-4">
           {books.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -177,13 +166,11 @@ const Home = () => {
                   <p className="text-gray-700 mb-2">
                     Author(s): {book.author_name?.join(", ")}
                   </p>
-                  <p className="text-gray-700 mb-2">
-                    Publisher: {book.publisher?.join(", ")}
+                  <p className="text-gray-700 mb-2"> Publisher: {book.publisher?.join(", ")}
                   </p>
                   <button
                     onClick={() => handleSeeDetails(book)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                  >See Details
+                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" >See Details
                   </button>
                 </div>
               ))}
@@ -196,7 +183,8 @@ const Home = () => {
       <footer className="bg-black text-white py-4">
   <div className="max-w-1xl mx-auto text-center px-2">
   <p className="text-xl font-bold mb-2">Stay Connected with Us!</p>
-    {/* Social Media Links */}
+
+    {/* Social Media Links for footer content from awesome fonts  */}
     <div className="flex justify-center sm:justify-end space-x-4 mb-2">
       <a href="#" className="hover:text-gray-400">
         <i className="fab fa-facebook text-xl"></i>
@@ -211,15 +199,11 @@ const Home = () => {
         <i className="fab fa-linkedin text-xl"></i>
       </a>
     </div>
-
-    {/* Copyright Text */}
-    <p className="text-xs">
+        <p className="text-xs">
       &copy; 2023 Book Library. All rights reserved.
     </p>
   </div>
 </footer>
-     
-
     </div>
   );
 }; 
