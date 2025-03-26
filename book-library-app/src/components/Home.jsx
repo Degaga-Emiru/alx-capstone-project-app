@@ -193,7 +193,31 @@ const Home = () => {
           )}
         </div>
       </main>
+      <footer className="bg-black text-white py-4">
+  <div className="max-w-1xl mx-auto text-center px-2">
+  <p className="text-xl font-bold mb-2">Stay Connected with Us!</p>
+    {/* Social Media Links */}
+    <div className="flex justify-center sm:justify-end space-x-4 mb-2">
+      <a href="#" className="hover:text-gray-400">
+        <i className="fab fa-facebook text-xl"></i>
+      </a>
+      <a href="#" className="hover:text-gray-400">
+        <i className="fab fa-twitter text-xl"></i>
+      </a>
+      <a href="#" className="hover:text-gray-400">
+        <i className="fab fa-instagram text-xl"></i>
+      </a>
+      <a href="#" className="hover:text-gray-400">
+        <i className="fab fa-linkedin text-xl"></i>
+      </a>
+    </div>
 
+    {/* Copyright Text */}
+    <p className="text-xs">
+      &copy; 2023 Book Library. All rights reserved.
+    </p>
+  </div>
+</footer>
      
 
     </div>
