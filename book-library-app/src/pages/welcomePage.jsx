@@ -34,7 +34,7 @@ const WelcomePage = () => {
 
         {/* Paragraph */}
         <p className="text-base md:text-lg mt-8">
-          Welcome to Book Library! A gateway to endless knowledge and imagination. Whether you’re a curious learner, an avid reader, or a casual browser, our library helps you explore millions of books effortlessly. Search, borrow, and enjoy your favorite books anytime, anywhere. From timeless classics to the latest bestsellers, your reading journey begins here. Discover, learn, and grow with us.
+          Welcome to Book Library! A gateway to endless knowledge and imagination. Whether you're a curious learner, an avid reader, or a casual browser, our library helps you explore millions of books effortlessly. Search, borrow, and enjoy your favorite books anytime, anywhere. From timeless classics to the latest bestsellers, your reading journey begins here. Discover, learn, and grow with us.
         </p>
       </div>
     </div>
