@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 const Favorites = () => {
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
-
   // Load favorites from localStorage on component mount and updates
   useEffect(() => {
     const loadFavorites = () => {
@@ -16,15 +14,26 @@ const Favorites = () => {
         setFavorites([]);
       }
     };
-
     loadFavorites();
-
     // Listen for changes in localStorage (e.g., from other tabs)
     window.addEventListener("storage", loadFavorites);
     return () => window.removeEventListener("storage", loadFavorites);
   }, []);
+  const handleRemoveFavorite = (book) => {
+    if (!book?.key) return;
 
-
+    try {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+      const updatedFavorites = (currentUser.favorites || []).filter(
+        (fav) => fav.key !== book.key
+      );
+      const updatedUser = { ...currentUser, favorites: updatedFavorites };
+      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+      setFavorites(updatedFavorites); // Update state immediately when user remove the books from the Favorites list
+    } catch (error) {
+      console.error("Error updating favorites:", error);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="container mx-auto">
@@ -56,12 +65,17 @@ const Favorites = () => {
                 <p className="text-gray-700 mb-2">
                   Author(s): {book.author_name?.join(", ") || "Unknown author"}
                 </p>
-                
+                {/* this button  helps to remove books from the Favorites list when this button clicked the handleRemoveFavorites handles the remove book list*/}
+                <button
+                  onClick={() => handleRemoveFavorite(book)}
+                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Remove from Favorites
+                </button>
               </div>
             ))}
           </div>
         ) : (<p className="text-gray-700">You have no favorite books yet.</p>
         )}
+        {/* when user remove the book list from favorites it set that pages to You have no favorites books yet*/}
       </div>
     </div>
   );
