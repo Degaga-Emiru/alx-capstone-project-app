@@ -35,8 +35,7 @@ const navigate = useNavigate();
                     src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
                     alt={book.title}
                     className="w-full h-48 object-cover mb-4"
-                  />
-                )}
+                  />)}
                 <h2 className="text-xl font-bold mb-2">{book.title}</h2>
                 <p className="text-gray-700 mb-2">
                   Author(s): {book.author_name?.join(", ")}
@@ -47,7 +46,7 @@ const navigate = useNavigate();
                     value={book.status}
                     onChange={(e) => handleUpdateStatus(book, e.target.value)}
                     className="p-2 border border-gray-300 rounded" > 
-                    {/*the option for  book status change the added to reading list*/}
+                    {/*the option that change the   book status that added to reading list*/}
                     <option value="Want to Read">Want to Read</option>
                     <option value="Currently Reading">Currently Reading</option>
                     <option value="Completed">Completed</option>
