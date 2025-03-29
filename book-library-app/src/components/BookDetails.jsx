@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';// for navigation 
-import useAuthStore from '../components/store';// use zustand store
+import useAuthStore from '../store/store';// use zustand store
 import React, { useState, useEffect } from 'react';
 const BookDetails = () => {
   const location = useLocation();

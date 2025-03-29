@@ -28,8 +28,7 @@ const BorrowedBooks = () => {
             {borrowedBooks.map((book) => (
               <div
                 key={book.key}
-                className="bg-white p-4 rounded-lg shadow-md"
-              >
+                className="bg-white p-4 rounded-lg shadow-md">
                 {book.cover_i && (
                   <img
                     src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
@@ -46,14 +45,12 @@ const BorrowedBooks = () => {
                 </p>
                 <button
                   onClick={() => handleReturn(book)}
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                >
+                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
                   Return Book
                 </button>
               </div>
             ))}
-          </div>
-        ) : (
+          </div> ) : (
           <p className="text-gray-700">You have no borrowed books.</p>
         )}
       </div>

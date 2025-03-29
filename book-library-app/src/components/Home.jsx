@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuthStore from "./store";
+import useAuthStore from "../store/store";
 import logo from '../assets/logo.png';
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,8 +61,7 @@ const Home = () => {
                 className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor"> 
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
