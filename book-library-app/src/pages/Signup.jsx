@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/store'; // Import Zustand store
+import bookIllustration from '../assets/book-illustrations.jpeg'; // Import your image
 
 const Signup = () => {
   const [message, setMessage] = useState({ text: '', type: 'info' });
@@ -15,7 +16,14 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
   };
-
+// Moving text animation content
+const movingTexts = [
+  "Start your reading journey today",
+  "Build your personal library",
+  "Track books you've read",
+  "Discover new favorites",
+  "Join our community of readers"
+];
   const validationSchema = Yup.object({
     username: Yup.string()
       .required('Username is required')
@@ -83,7 +91,6 @@ const Signup = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">SignUp and Join Our Book Library</h2>
-        
         {message.text && (
           <div
             className={`p-4 mb-4 rounded-md ${
@@ -111,13 +118,11 @@ const Signup = () => {
                   type="text"
                   name="username"
                   placeholder="Enter y username"
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                />
-                <ErrorMessage 
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/> 
+                  <ErrorMessage 
                   name="username" 
                   component="div" 
-                  className="mt-1 text-sm text-red-600" 
-                />
+                  className="mt-1 text-sm text-red-600"  />
               </div>
 
               <div>
@@ -136,7 +141,6 @@ const Signup = () => {
                   className="mt-1 text-sm text-red-600" 
                 />
               </div>
-
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
@@ -145,8 +149,8 @@ const Signup = () => {
                   type="password"
                   name="password"
                   placeholder="Create a password"
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                /> <ErrorMessage 
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/> 
+                  <ErrorMessage 
                   name="password" 
                   component="div" 
                   className="mt-1 text-sm text-red-600" />
@@ -162,15 +166,12 @@ const Signup = () => {
                   type="password"
                   name="confirmPassword"
                   placeholder="Confirm your password"
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                />
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>
                 <ErrorMessage 
                   name="confirmPassword" 
                   component="div" 
-                  className="mt-1 text-sm text-red-600" 
-                />
+                  className="mt-1 text-sm text-red-600" />
               </div>
-
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -184,9 +185,7 @@ const Signup = () => {
                   Already have an account?{' '}
                   <Link 
                     to="/login" 
-                    className="font-medium text-blue-600 hover:text-blue-500"
-                  >
-                    Log in
+                    className="font-medium text-blue-600 hover:text-blue-500" > Log in
                   </Link>
                 </p>
               </div>
@@ -194,6 +193,49 @@ const Signup = () => {
           )}
         </Formik>
       </div>
+      {/*  this section contains some animation for signup page that consists paragraph and image with animation*/}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 to-purple-800 p-12 flex-col justify-between relative overflow-hidden">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-white mb-4">Begin Your Reading Adventure</h1>
+          <p className="mt-4 text-white">
+              Create your account to start building your personal library, track your reading progress,
+              and discover new books tailored just for you.
+            </p>
+        </div>
+        <div className="flex justify-center mb-8">
+          <img 
+            src={bookIllustration} 
+            alt="Reading illustration"
+            className="w-96 h-96 object-contain"/>
+        </div>
+
+        {/* Moving text animation on sign up page*/}
+        <div className="absolute bottom-10 left-0 right-0 overflow-hidden text-center">
+          <div className="animate-marquee whitespace-nowrap">
+            {movingTexts.map((text, index) => (
+              <span key={index} className="mx-8 text-2xl font-semibold text-white inline-block">
+                {text} •
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="text-indigo-100 text-center mb-20">
+          <p className="text-lg">"The more that you read, the more things you will know."</p>
+          <p className="text-sm mt-2">- Dr. Seuss</p>
+        </div>
+      </div>
+
+      {/* Add custom animation style using css  */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 20s linear infinite;
+          display: inline-block;
+        }
+      `}</style>
     </div>
   );
 };

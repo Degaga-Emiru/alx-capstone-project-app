@@ -34,19 +34,18 @@ const Login = () => {
         setMessage({ text: 'User not found!', type: 'error' });
         return;
       }
-
       if (user.password !== values.password) {
         setMessage({ text: 'Invalid password!', type: 'error' });
         return;
       }
 
       // Successful login
-      login(user); // Update Zustand store
+      login(user); 
       setMessage({ text: 'Login successful! Redirecting...', type: 'success' });
       
-      // Redirect to /home after 1.5 seconds
+      // Redirect to /home after 1.5 seconds after the user enter some valid data
       setTimeout(() => {
-        navigate('/home'); // Changed from '/' to '/home'
+        navigate('/home'); 
       }, 1500);
 
     // eslint-disable-next-line no-unused-vars
@@ -68,8 +67,7 @@ const Login = () => {
               message.type === 'error' 
                 ? 'bg-red-100 text-red-700' 
                 : 'bg-green-100 text-green-700'
-            }`}
-          >
+            }`}>
             {message.text}
           </div>
         )}
@@ -89,15 +87,12 @@ const Login = () => {
                   type="text"
                   name="emailOrUsername"
                   placeholder="Enter your email or username"
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                />
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>
                 <ErrorMessage 
                   name="emailOrUsername" 
                   component="div" 
-                  className="mt-1 text-sm text-red-600" 
-                />
+                  className="mt-1 text-sm text-red-600" />
               </div>
-
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
@@ -106,23 +101,19 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="Enter your password"
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                />
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>
                 <ErrorMessage 
                   name="password" 
                   component="div" 
-                  className="mt-1 text-sm text-red-600" 
-                />
+                  className="mt-1 text-sm text-red-600" />
               </div>
-
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <Field
                     type="checkbox"
                     id="rememberMe"
                     name="rememberMe"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"/>
                   <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-700">
                     Remember me
                   </label>
@@ -131,13 +122,11 @@ const Login = () => {
                 <div className="text-sm">
                   <Link 
                     to="/forgot-password" 
-                    className="font-medium text-blue-600 hover:text-blue-500"
-                  >
+                    className="font-medium text-blue-600 hover:text-blue-500">
                     Forgot password?
                   </Link>
                 </div>
               </div>
-
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -145,15 +134,12 @@ const Login = () => {
               >
                 {isSubmitting ? 'Logging in...' : 'Login'}
               </button>
-
               <div className="text-center text-sm text-gray-600">
                 <p>
                   Don't have an account?{' '}
                   <Link 
                     to="/signup" 
-                    className="font-medium text-blue-600 hover:text-blue-500"
-                  >
-                    Sign up here
+                    className="font-medium text-blue-600 hover:text-blue-500">Sign up here
                   </Link>
                 </p>
               </div>
