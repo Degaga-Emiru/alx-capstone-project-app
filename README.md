@@ -51,7 +51,7 @@ User registration and login forms are handled using Formik with built-in validat
 
 🔧 Project management with Git and GitHub
 
-🚀 Deployment of full-fledged React  Vercel
+
 
 🗂️ Folder Structure (Sample)
 
@@ -69,8 +69,7 @@ User registration and login forms are handled using Formik with built-in validat
 ├── package.json
 ├── README.md
 
-🌐 Live Demo
-🔗 Click here to view the live app on Netlify/Vercel
+
 🛠️ Getting Started Locally
 To run this project on your local machine, follow these steps:
 Clone the repository
