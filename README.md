@@ -73,7 +73,7 @@ User registration and login forms are handled using Formik with built-in validat
 🛠️ Getting Started Locally
 To run this project on your local machine, follow these steps:
 Clone the repository
-git clone https://github.com/your-username/book-library-app.git
+(https://github.com/Degaga-Emiru/alx-capstone-project-app.git)
 Navigate into the project directory
 cd book-library-app
 Install dependencies
