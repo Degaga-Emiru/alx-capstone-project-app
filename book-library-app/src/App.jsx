@@ -6,7 +6,7 @@ import BookDetails from './components/BookDetails';
 import Favorites from './components/Favorites';
 import ReadingList from './components/ReadingList';
 import BorrowedBooks from './components/BorrowedBooks';
-import SignUp from './pages/SignUp';
+import SignUp from './pages/Signup';
 import Login from './pages/Login';
 import useAuthStore from './store/store';
 

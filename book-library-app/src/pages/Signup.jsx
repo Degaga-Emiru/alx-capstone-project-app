@@ -71,7 +71,7 @@ const movingTexts = [
         type: 'success' 
       });
 
-      // Redirect after 1.5 seconds
+      // Redirect after 1.5 seconds to the Login page
       setTimeout(() => {
         navigate('/login');
       }, 1500);
@@ -117,7 +117,7 @@ const movingTexts = [
                 <Field
                   type="text"
                   name="username"
-                  placeholder="Enter y username"
+                  placeholder="Enter your username"
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/> 
                   <ErrorMessage 
                   name="username" 
